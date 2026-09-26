@@ -1,0 +1,12 @@
+{
+  "name": "old-browser-chat",
+  "version": "1.0.0",
+  "description": "A simple desktop-style Socket.IO chat application with old browser support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "socket.io": "1.7.4"
+  }
+}
