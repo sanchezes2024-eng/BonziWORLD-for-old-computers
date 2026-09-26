@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Desktop Chat</title>
+
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+
+<div id="login">
+
+    <div id="loginBox">
+
+        <div id="loginTitle">
+            Desktop Chat
+        </div>
+
+        <div class="loginLabel">
+            Name
+        </div>
+
+        <input
+            type="text"
+            id="name"
+            value=""
+            maxlength="32"
+        >
+
+        <div class="loginLabel">
+            Room ID
+        </div>
+
+        <input
+            type="text"
+            id="room"
+            value="default"
+            maxlength="32"
+        >
+
+        <div id="loginButtonArea">
+            <input
+                type="button"
+                id="submit"
+                value="Submit"
+            >
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="desktop">
+
+    <div id="desktopArea">
+
+        <!-- Players are inserted here -->
+
+    </div>
+
+    <div id="taskbar">
+
+        <input
+            type="text"
+            id="messageInput"
+            maxlength="500"
+            value=""
+        >
+
+        <input
+            type="button"
+            id="startButton"
+            value="Start"
+        >
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/script.js"></script>
+
+</body>
+</html>
