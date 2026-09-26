@@ -157,18 +157,18 @@ TASKBAR
 #messageInput {
     position: absolute;
 
-    left: 4px;
-    top: 3px;
+    left: 52px;
+    top: 0px;
 
-    right: 62px;
+    right: 0px;
 
-    height: 18px;
+    height: 22px;
 
     border-top: 2px solid #808080;
     border-left: 2px solid #808080;
     border-right: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
-
+    box-sizing: border-box;
     padding-left: 4px;
 
     font-family: Tahoma, Arial, sans-serif;
@@ -178,8 +178,8 @@ TASKBAR
 #startButton {
     position: absolute;
 
-    right: 4px;
-    top: 3px;
+    left: 0;
+    top: 0;
 
     width: 52px;
     height: 22px;
