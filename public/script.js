@@ -36,6 +36,7 @@ function addEvent(element, eventName, handler) {
 
 
 function trimString(value) {
+    value = String(value || "");
     return value.replace(/^\s+|\s+$/g, "");
 }
 
@@ -110,14 +111,14 @@ function createPlayer(data) {
             '</div>' +
         '</div>' +
         '<div class="playerName">' +
-            escapeHTML(data.name) +
+            escapeHTML(data.name || "Anonymous") +
         '</div>';
 
     desktopArea.appendChild(player);
 
     players[data.id] = {
         element: player,
-        name: data.name,
+        name: data.name || "Anonymous",
         x: data.x,
         y: data.y,
         speechTimer: null
@@ -162,6 +163,38 @@ function updatePlayer(id, x, y) {
 
 /*
 ============================================================
+ABSOLUTE POSITION
+============================================================
+*/
+
+function getAbsoluteLeft(element) {
+
+    var result = 0;
+
+    while (element) {
+        result += element.offsetLeft;
+        element = element.offsetParent;
+    }
+
+    return result;
+}
+
+
+function getAbsoluteTop(element) {
+
+    var result = 0;
+
+    while (element) {
+        result += element.offsetTop;
+        element = element.offsetParent;
+    }
+
+    return result;
+}
+
+
+/*
+============================================================
 DRAGGING
 ============================================================
 */
@@ -188,14 +221,25 @@ function makeDraggable(element) {
 
             dragging = true;
 
-            var rectLeft = element.offsetLeft;
-            var rectTop = element.offsetTop;
-
             var mouseX = getMouseX(event);
             var mouseY = getMouseY(event);
 
-            dragOffsetX = mouseX - rectLeft;
-            dragOffsetY = mouseY - rectTop;
+            /*
+             * offsetLeft/offsetTop are relative to the
+             * offset parent, so calculate the actual page
+             * position of the character.
+             */
+            var playerLeft =
+                getAbsoluteLeft(element);
+
+            var playerTop =
+                getAbsoluteTop(element);
+
+            dragOffsetX =
+                mouseX - playerLeft;
+
+            dragOffsetY =
+                mouseY - playerTop;
 
             if (event.preventDefault) {
                 event.preventDefault();
@@ -228,14 +272,27 @@ function dragMove(event) {
     var mouseX = getMouseX(event);
     var mouseY = getMouseY(event);
 
-    var areaLeft = desktopArea.offsetLeft;
-    var areaTop = desktopArea.offsetTop;
+    var areaLeft =
+        getAbsoluteLeft(desktopArea);
 
-    var width = desktopArea.offsetWidth;
-    var height = desktopArea.offsetHeight;
+    var areaTop =
+        getAbsoluteTop(desktopArea);
 
-    var x = mouseX - areaLeft - dragOffsetX;
-    var y = mouseY - areaTop - dragOffsetY;
+    var width =
+        desktopArea.offsetWidth;
+
+    var height =
+        desktopArea.offsetHeight;
+
+    var x =
+        mouseX -
+        areaLeft -
+        dragOffsetX;
+
+    var y =
+        mouseY -
+        areaTop -
+        dragOffsetY;
 
     /*
      * Convert pixels to percentages.
@@ -274,13 +331,15 @@ function dragMove(event) {
     /*
      * Send the new position to everyone else.
      */
-    socket.emit(
-        "move",
-        {
-            x: percentX,
-            y: percentY
-        }
-    );
+    if (socket) {
+        socket.emit(
+            "move",
+            {
+                x: percentX,
+                y: percentY
+            }
+        );
+    }
 
     if (event.preventDefault) {
         event.preventDefault();
@@ -374,7 +433,8 @@ function showSpeech(id, text) {
     );
 
     if (textElement) {
-        textElement.innerHTML = escapeHTML(text);
+        textElement.innerHTML =
+            escapeHTML(text);
     }
 
     bubble.style.display = "block";
@@ -465,9 +525,15 @@ function sendMessage() {
         return;
     }
 
+    /*
+     * IMPORTANT:
+     * The server expects an object containing "text".
+     */
     socket.emit(
         "message",
-        message
+        {
+            text: message
+        }
     );
 
     messageInput.value = "";
@@ -513,6 +579,12 @@ function connectSocket() {
     );
 
 
+    /*
+    --------------------------------------------------------
+    LOGIN SUCCESS
+    --------------------------------------------------------
+    */
+
     socket.on(
         "loginSuccess",
         function(data) {
@@ -535,6 +607,12 @@ function connectSocket() {
     );
 
 
+    /*
+    --------------------------------------------------------
+    EXISTING PLAYERS
+    --------------------------------------------------------
+    */
+
     socket.on(
         "existingPlayers",
         function(list) {
@@ -551,6 +629,12 @@ function connectSocket() {
     );
 
 
+    /*
+    --------------------------------------------------------
+    PLAYER JOINED
+    --------------------------------------------------------
+    */
+
     socket.on(
         "playerJoined",
         function(data) {
@@ -561,6 +645,12 @@ function connectSocket() {
         }
     );
 
+
+    /*
+    --------------------------------------------------------
+    PLAYER MOVED
+    --------------------------------------------------------
+    */
 
     socket.on(
         "playerMoved",
@@ -586,6 +676,12 @@ function connectSocket() {
     );
 
 
+    /*
+    --------------------------------------------------------
+    PLAYER LEFT
+    --------------------------------------------------------
+    */
+
     socket.on(
         "playerLeft",
         function(data) {
@@ -597,9 +693,19 @@ function connectSocket() {
     );
 
 
+    /*
+    --------------------------------------------------------
+    MESSAGE
+    --------------------------------------------------------
+    */
+
     socket.on(
         "message",
         function(data) {
+
+            if (!data) {
+                return;
+            }
 
             showSpeech(
                 data.id,
@@ -622,6 +728,12 @@ function messageKeyDown(event) {
 
     if (event.keyCode === 13) {
         sendMessage();
+
+        if (event.preventDefault) {
+            event.preventDefault();
+        }
+
+        event.returnValue = false;
     }
 }
 
@@ -632,6 +744,12 @@ function loginKeyDown(event) {
 
     if (event.keyCode === 13) {
         login();
+
+        if (event.preventDefault) {
+            event.preventDefault();
+        }
+
+        event.returnValue = false;
     }
 }
 
