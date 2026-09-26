@@ -24,13 +24,16 @@ LOGIN
     position: absolute;
     left: 0;
     top: 0;
+
     width: 100%;
     height: 100%;
+
     background: #008080;
 }
 
 #loginBox {
     position: absolute;
+
     width: 300px;
     height: 210px;
 
@@ -88,6 +91,7 @@ LOGIN
 
 #loginButtonArea {
     text-align: right;
+
     margin-top: 14px;
     margin-right: 20px;
 }
@@ -111,6 +115,7 @@ DESKTOP
     display: none;
 
     position: absolute;
+
     left: 0;
     top: 0;
 
@@ -142,9 +147,10 @@ TASKBAR
     position: absolute;
 
     left: 0;
+    right: 0;
     bottom: 0;
 
-    width: 100%;
+    width: auto;
     height: 28px;
 
     background: #c0c0c0;
@@ -158,9 +164,9 @@ TASKBAR
     position: absolute;
 
     left: 52px;
-    top: 0px;
+    top: 0;
 
-    right: 0px;
+    right: 0;
 
     height: 22px;
 
@@ -168,7 +174,9 @@ TASKBAR
     border-left: 2px solid #808080;
     border-right: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
+
     box-sizing: border-box;
+
     padding-left: 4px;
 
     font-family: Tahoma, Arial, sans-serif;
@@ -306,4 +314,100 @@ SPEECH BUBBLE
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 7px solid #ffffff;
+}
+
+
+/*
+============================================================
+PHONE SUPPORT
+============================================================
+*/
+
+@media screen and (max-width: 600px) {
+
+    /*
+    --------------------------------------------------------
+    LOGIN
+    --------------------------------------------------------
+    */
+
+    #loginBox {
+        width: 90%;
+        height: 210px;
+
+        left: 5%;
+        top: 50%;
+
+        margin-left: 0;
+        margin-top: -105px;
+
+        box-sizing: border-box;
+    }
+
+    #name,
+    #room {
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+    }
+
+
+    /*
+    --------------------------------------------------------
+    DESKTOP
+    --------------------------------------------------------
+    */
+
+    #desktopArea {
+        bottom: 30px;
+    }
+
+
+    /*
+    --------------------------------------------------------
+    TASKBAR
+    --------------------------------------------------------
+    */
+
+    #taskbar {
+        height: 30px;
+    }
+
+    #startButton {
+        width: 58px;
+        height: 30px;
+
+        font-size: 11px;
+    }
+
+    #messageInput {
+        left: 58px;
+
+        height: 30px;
+
+        font-size: 16px;
+        padding-left: 5px;
+    }
+}
+
+
+/*
+============================================================
+VERY SMALL PHONES
+============================================================
+*/
+
+@media screen and (max-width: 360px) {
+
+    #loginBox {
+        width: 94%;
+        left: 3%;
+    }
+
+    #startButton {
+        width: 54px;
+    }
+
+    #messageInput {
+        left: 54px;
+    }
 }
