@@ -1,0 +1,309 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
+
+body {
+    background: #008080;
+}
+
+
+/*
+============================================================
+LOGIN
+============================================================
+*/
+
+#login {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #008080;
+}
+
+#loginBox {
+    position: absolute;
+    width: 300px;
+    height: 210px;
+
+    left: 50%;
+    top: 50%;
+
+    margin-left: -150px;
+    margin-top: -105px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+#loginTitle {
+    height: 22px;
+    line-height: 22px;
+
+    padding-left: 8px;
+
+    background: #000080;
+    color: #ffffff;
+
+    font-weight: bold;
+}
+
+.loginLabel {
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 3px;
+}
+
+#name,
+#room {
+    display: block;
+
+    width: 250px;
+    height: 18px;
+
+    margin-left: 20px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+
+    padding-left: 4px;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
+
+#loginButtonArea {
+    text-align: right;
+    margin-top: 14px;
+    margin-right: 20px;
+}
+
+#submit {
+    width: 75px;
+    height: 23px;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+}
+
+
+/*
+============================================================
+DESKTOP
+============================================================
+*/
+
+#desktop {
+    display: none;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #008080;
+}
+
+#desktopArea {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 28px;
+
+    overflow: hidden;
+}
+
+
+/*
+============================================================
+TASKBAR
+============================================================
+*/
+
+#taskbar {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 28px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid #ffffff;
+
+    overflow: hidden;
+}
+
+#messageInput {
+    position: absolute;
+
+    left: 4px;
+    top: 3px;
+
+    right: 62px;
+
+    height: 18px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+
+    padding-left: 4px;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
+
+#startButton {
+    position: absolute;
+
+    right: 4px;
+    top: 3px;
+
+    width: 52px;
+    height: 22px;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/*
+============================================================
+PLAYER
+============================================================
+*/
+
+.player {
+    position: absolute;
+
+    width: 40px;
+    height: 40px;
+
+    margin-left: -20px;
+    margin-top: -20px;
+}
+
+.playerSquare {
+    position: absolute;
+
+    left: 5px;
+    top: 5px;
+
+    width: 30px;
+    height: 30px;
+
+    background: #800080;
+
+    border-top: 2px solid #c080c0;
+    border-left: 2px solid #c080c0;
+    border-right: 2px solid #400040;
+    border-bottom: 2px solid #400040;
+}
+
+
+/*
+============================================================
+NAME
+============================================================
+*/
+
+.playerName {
+    position: absolute;
+
+    top: 39px;
+    left: -50px;
+
+    width: 140px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/*
+============================================================
+SPEECH BUBBLE
+============================================================
+*/
+
+.speech {
+    position: absolute;
+
+    left: 30px;
+    bottom: 35px;
+
+    display: none;
+
+    width: 150px;
+
+    padding: 6px;
+
+    background: #ffffff;
+
+    border: 1px solid #000000;
+
+    color: #000000;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+
+    word-wrap: break-word;
+
+    z-index: 10;
+}
+
+.speechTail {
+    position: absolute;
+
+    left: 8px;
+    bottom: -8px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 8px solid #000000;
+}
+
+.speechTailInner {
+    position: absolute;
+
+    left: -6px;
+    top: -9px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #ffffff;
+}
